@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:secure-properties="http://www.mulesoft.org/schema/mule/secure-properties" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd">
+	<http:listener-config name="main-http_listener" doc:name="HTTP Listener config" doc:id="53012dd1-7a00-460f-8634-b1c3d96b3589" basePath="${api.basePath}" >
+		<http:listener-connection host="${api.host}" port="${api.port}" readTimeout="${api.readTimeout}" protocol="HTTPS"/>
+	</http:listener-config>
+	<configuration-properties doc:name="env-properties" doc:id="37fb58f1-125d-4a3d-889e-586e98d76284" file="properties\config-${env}.yaml" />	
+	<configuration-properties doc:name="Configuration properties" doc:id="7f03dbdd-c0f8-4239-b33f-784eb0683565" file="properties\config.yaml" />
+</mule>
