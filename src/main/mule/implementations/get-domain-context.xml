@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<sub-flow name="get-domain-context-main" doc:id="fc3a060c-7695-4585-bb62-6538a73bc28a" doc:description="Flow description goes here">
+		<flow-ref doc:name="get-domain-context-sub" doc:id="500cd8fa-5378-4519-b235-52652618aba4" name="get-domain-context-sub"/>
+	</sub-flow>
+	<sub-flow name="get-domain-context-sub" doc:id="44b57449-924a-4687-b123-a622cd875b7b" >
+		<foreach doc:name="for-each_element" doc:id="479e2c29-8c0a-4632-b813-e327fa8d7a7e" collection="#[[1,2,3,4,5]]">
+			<logger level="INFO" doc:name="payload" doc:id="f7bc60e2-278c-4774-a410-e10e2f2d40f3" message="#[payload]"/>
+		</foreach>
+		<ee:transform doc:name="response" doc:id="dd1e5fd4-cc69-45da-94c6-9e49678be0d9" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+{
+  "status": "success",
+  "message": " Operation completed successfully"
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</sub-flow>
+</mule>
